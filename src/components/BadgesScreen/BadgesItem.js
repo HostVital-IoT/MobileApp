@@ -7,12 +7,16 @@ import {
     TouchableOpacity,
     Pressable,
     ScrollView,
+    ImageBackground,
 } from 'react-native'
 import Colors from '../../res/Colors'
 import redimage from '../../assets/red.png'
 import yellowimage from '../../assets/yellow.png'
 import greenimage from '../../assets/green.png'
 
+const imageBackground = {
+    uri: 'https://images.pexels.com/photos/2098427/pexels-photo-2098427.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+};
 
 
 class itemsItem extends React.Component {
@@ -43,6 +47,24 @@ class itemsItem extends React.Component {
                             source={{ uri: `${item.profile_picture}` }}
                         />
                      {this.renderStatusColor()}
+                     <View style={styles.icons}>
+                    {this.props.onEdit ? (
+                        <Pressable onPress={this.props.onEdit}>
+                            <Image
+                                style={styles.editIcon}
+                                source={require('../../assets/edit_icon.png')}
+                            />
+                        </Pressable>
+                    ) : null}
+                    {this.props.onDelete ? (
+                        <Pressable onPress={this.props.onDelete}>
+                            <Image
+                                style={styles.deleteIcon}
+                                source={require('../../assets/delete_icon.png')}
+                            />
+                        </Pressable>
+                    ) : null}
+                </View>
 
                         <View style={styles.userData}>
                         <Text style={styles.name}>{item.name}</Text>
@@ -66,6 +88,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
+        
     },
     content: {
         flex: 1,
@@ -98,10 +121,13 @@ const styles = StyleSheet.create({
         color: Colors.zircon,
     },
     status: {
-        marginTop: 20,
-        width: 30,
-        height: 30,
+        marginTop: 15,
+        width: 35,
+        height: 35,
         marginLeft: 160,
+        borderRadius:30,
+        borderWidth: 3,
+        borderColor: Colors.white,
 
     },
     statustext: {
@@ -146,19 +172,24 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-end',
         flexDirection: 'row',
+        
     },
     editIcon: {
-        height: 22,
-        width: 22,
+        height: 23,
+        width: 23,
         resizeMode: 'cover',
         justifyContent: 'center',
+        marginRight:183,
+        
     },
     deleteIcon: {
         marginLeft: 15,
-        height: 22,
-        width: 22,
+        height: 23,
+        width: 23,
         resizeMode: 'cover',
         justifyContent: 'center',
+        marginRight:15,
+        
     },
     dataColumns: {
         flexDirection: 'column',
@@ -167,9 +198,10 @@ const styles = StyleSheet.create({
     },
     userData: {
         flexDirection: 'row',
-        marginTop: 50,
+        marginTop: 20,
         justifyContent: 'center',
     },
+  
 });
 
 export default itemsItem;

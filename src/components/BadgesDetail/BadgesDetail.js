@@ -73,7 +73,7 @@ class BadgesDetail extends React.Component {
     }
 
     render() {
-        const { badge, isFavorite } = this.state;
+        const { badge } = this.state;
         return (
             <View style={styles.container}>
                 <View style={styles.badge}>
@@ -85,8 +85,12 @@ class BadgesDetail extends React.Component {
                         style={styles.profileImage}
                         source={{ uri: `${badge.profile_picture}` }}
                     />
+                    
                     {this.renderStatusColor()}
+                    
+                    
                     <View style={styles.userInfo}>
+                        
                         <Text style={styles.name}>{badge.name}</Text>
                         <Text style={styles.age}>{badge.age}</Text>
                     </View>
@@ -146,11 +150,6 @@ const styles = StyleSheet.create({
         left: '22%',
 
     },
-    favorite: {
-        position: 'absolute',
-        top: 290,
-        right: 40,
-    },
 
     userInfo: {
         flexDirection: 'row',
@@ -169,8 +168,11 @@ const styles = StyleSheet.create({
     },
     status: {
         position: 'absolute',
-        top: 330,
-        right: 90,
+        top: 345,
+        borderRadius:30,
+        borderWidth: 4,
+        borderColor: Colors.white,
+        right: 110,
         width: 40,
         height: 40,
         zIndex:1,
@@ -203,8 +205,33 @@ const styles = StyleSheet.create({
     },
     smallText: {
         color: Colors.zircon,
-        fontSize: 14,
+        fontSize: 15,
+        
     },
+    icons: {
+        marginLeft:200,
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+
+    },
+    editIcon: {
+        marginTop:10,
+        height: 25,
+        width: 25,
+        resizeMode: 'cover',
+        justifyContent: 'center',
+
+    },
+    deleteIcon: {
+        marginTop:10,
+        height: 25,
+        width: 26,
+        resizeMode: 'cover',
+        justifyContent: 'center',
+
+    },
+ 
 });
 
 export default BadgesDetail;
