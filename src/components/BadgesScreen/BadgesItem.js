@@ -175,20 +175,21 @@ const styles = StyleSheet.create({
         
     },
     editIcon: {
-        height: 23,
-        width: 23,
+        height: 40,
+        width: 40,
         resizeMode: 'cover',
         justifyContent: 'center',
-        marginRight:183,
+        marginRight:165,
         
     },
     deleteIcon: {
-        marginLeft: 15,
-        height: 23,
-        width: 23,
+        marginLeft: 1,
+        height: 40,
+        width: 40,
         resizeMode: 'cover',
         justifyContent: 'center',
-        marginRight:15,
+        marginRight:14,
+        
         
     },
     dataColumns: {
