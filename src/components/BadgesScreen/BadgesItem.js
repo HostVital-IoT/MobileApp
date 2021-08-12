@@ -9,8 +9,24 @@ import {
     ScrollView,
 } from 'react-native'
 import Colors from '../../res/Colors'
+import redimage from '../../assets/red.png'
+import yellowimage from '../../assets/yellow.png'
+import greenimage from '../../assets/green.png'
+
+
 
 class itemsItem extends React.Component {
+    renderStatusColor() {
+        const { item } = this.props;
+        if(item.status == 'Good'){
+        return <Image style={styles.status} source={greenimage}/>;
+        }else if(item.status == 'Stable'){
+        return <Image style={styles.status} source={yellowimage}/>;
+        }else if('Bad'){
+            return <Image style={styles.status} source={redimage}/>;
+        }
+    }
+    
     render() {
         const { item } = this.props;
         return (
@@ -26,17 +42,15 @@ class itemsItem extends React.Component {
                             style={styles.profileImage}
                             source={{ uri: `${item.profile_picture}` }}
                         />
-                        
+                     {this.renderStatusColor()}
+
                         <View style={styles.userData}>
                         <Text style={styles.name}>{item.name}</Text>
                         <Text style={styles.age}>{item.age}</Text>
+
                     </View>
-                    <Text style={styles.status}>{item.status}</Text>
-                    <View style={styles.data}>
-
-                       
-
-                        </View>
+                        <Text style={styles.statustext}>{item.status}</Text>
+                    <View style={styles.data}></View>
                     </View>
                 </TouchableOpacity>
 
@@ -45,6 +59,7 @@ class itemsItem extends React.Component {
 
         );
     }
+    
 }
 
 const styles = StyleSheet.create({
@@ -83,6 +98,13 @@ const styles = StyleSheet.create({
         color: Colors.zircon,
     },
     status: {
+        marginTop: 20,
+        width: 30,
+        height: 30,
+        marginLeft: 160,
+
+    },
+    statustext: {
         marginTop: 50,
         fontSize: 22,
         textAlign: 'center',

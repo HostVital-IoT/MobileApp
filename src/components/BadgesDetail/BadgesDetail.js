@@ -2,6 +2,9 @@ import React from 'react'
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import Colors from '../../res/Colors';
 import Storage from '../../libs/storage';
+import redimage from '../../assets/red.png'
+import yellowimage from '../../assets/yellow.png'
+import greenimage from '../../assets/green.png'
 
 class BadgesDetail extends React.Component {
     state = {
@@ -58,6 +61,17 @@ class BadgesDetail extends React.Component {
         this.setState({isFavorite: false});
     };
 
+    renderStatusColor() {
+        const { badge } = this.state;
+        if(badge.status == 'Good'){
+        return <Image style={styles.status} source={greenimage}/>;
+        }else if(badge.status == 'Stable'){
+        return <Image style={styles.status} source={yellowimage}/>;
+        }else if('Bad'){
+            return <Image style={styles.status} source={redimage}/>;
+        }
+    }
+
     render() {
         const { badge, isFavorite } = this.state;
         return (
@@ -71,22 +85,12 @@ class BadgesDetail extends React.Component {
                         style={styles.profileImage}
                         source={{ uri: `${badge.profile_picture}` }}
                     />
-                    <TouchableOpacity
-                        style = {styles.favorite}
-                        onPress={this.toggleFavorite}>
-                        <Image 
-                            source={
-                                isFavorite
-                                    ? require('../../assets/isFavorite.png')
-                                    : require('../../assets/notFavorite.png')
-                            }
-                        />
-                    </TouchableOpacity>
+                    {this.renderStatusColor()}
                     <View style={styles.userInfo}>
                         <Text style={styles.name}>{badge.name}</Text>
                         <Text style={styles.age}>{badge.age}</Text>
                     </View>
-                    <Text style={styles.status}>{badge.status}</Text>
+                    <Text style={styles.statustext}>{badge.status}</Text>
                     <View style={styles.data}>
 
                         <View style={styles.dataColumns}>
@@ -164,8 +168,16 @@ const styles = StyleSheet.create({
         color: Colors.zircon,
     },
     status: {
-        marginTop: 10,
-        fontSize: 18,
+        position: 'absolute',
+        top: 330,
+        right: 90,
+        width: 40,
+        height: 40,
+        zIndex:1,
+    },
+    statustext: {
+        marginTop: 50,
+        fontSize: 22,
         textAlign: 'center',
         color: Colors.zircon,
     },
