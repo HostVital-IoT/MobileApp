@@ -13,6 +13,7 @@ import Colors from '../../res/Colors'
 import redimage from '../../assets/red.png'
 import yellowimage from '../../assets/yellow.png'
 import greenimage from '../../assets/green.png'
+import { not } from 'react-native-reanimated'
 
 const imageBackground = {
     uri: 'https://images.pexels.com/photos/2098427/pexels-photo-2098427.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
@@ -34,7 +35,9 @@ class itemsItem extends React.Component {
     render() {
         const { item } = this.props;
         return (
+            
             <ScrollView style={styles.container}>
+                
                 <View style={styles.content}>
                 <TouchableOpacity onPress={this.props.onPress}>
                     <View style={styles.row}>
@@ -77,7 +80,9 @@ class itemsItem extends React.Component {
                 </TouchableOpacity>
 
             </View>
+            
         </ScrollView>
+
 
         );
     }
@@ -88,6 +93,13 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
+        
+        
+    },
+    image: {
+        flex: 1,
+        resizeMode: 'cover',
+        justifyContent: 'center',
         
     },
     content: {
@@ -175,12 +187,12 @@ const styles = StyleSheet.create({
         
     },
     editIcon: {
-        height: 40,
-        width: 40,
+        height: 55,
+        width: 55,
         resizeMode: 'cover',
         justifyContent: 'center',
-        marginRight:165,
-        
+        marginRight:163,
+        borderRadius:4,
     },
     deleteIcon: {
         marginLeft: 1,
@@ -188,9 +200,8 @@ const styles = StyleSheet.create({
         width: 40,
         resizeMode: 'cover',
         justifyContent: 'center',
-        marginRight:14,
-        
-        
+        marginRight:10,
+
     },
     dataColumns: {
         flexDirection: 'column',

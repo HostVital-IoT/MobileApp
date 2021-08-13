@@ -1,11 +1,15 @@
 import React from 'react';
-import { View, ActivityIndicator, Text, FlatList, StyleSheet, Alert, StatusBar } from 'react-native';
+import { View, ActivityIndicator, Text, FlatList, StyleSheet, Alert, StatusBar, ImageBackground } from 'react-native';
 import BadgesItem from '../../components/BadgesScreen/BadgesItem';
 import Colors from '../../res/Colors';
 import Http from '../../libs/http';
 import BadgesSearch from './BadgesSearch';
 import Loader from '../Generics/Loader';
 import Storage from '../../libs/storage';
+
+const imageBackground = {
+    uri: 'https://images.pexels.com/photos/2469122/pexels-photo-2469122.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+};
 
 class BadgesScreen extends React.Component {
     state = {
@@ -66,7 +70,7 @@ class BadgesScreen extends React.Component {
     };
 
     handleDelete= item => {
-        Alert.alert('Are you sure you want to delete this badge?',
+        Alert.alert('Are you sure you want to delete this patient?',
         `Do you really want to delete ${item.name}'s badge?\n\nThis process cannot be undone.`,
         [
             {
@@ -105,7 +109,9 @@ class BadgesScreen extends React.Component {
         );
     } 
         return(
+            <ImageBackground source={imageBackground} style={styles.image}>
             <View style={[styles.container, styles.horizontal]}>
+               
                 <StatusBar backgroundColor="transparent" translucent={true} />
                 <BadgesSearch onChange={this.handleChange} />
                 
@@ -122,8 +128,10 @@ class BadgesScreen extends React.Component {
                      />
                 )}
                 keyExtractor={(item, index)=> index.toString()}
-                />     
+                /> 
+                  
             </View>
+            </ImageBackground>
         );
     }
 }
@@ -132,7 +140,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: Colors.charade,
+    },
+    image: {
+        flex: 1,
+        resizeMode: 'cover',
+        justifyContent: 'center',
     },
     horizontal: {
         justifyContent: 'space-around',

@@ -22,7 +22,7 @@ class BadgesSearch extends React.Component {
                     style={styles.TextInput}
                     onChangeText={this.handleText}
                     value={query}
-                    placeholder="Search a badge"
+                    placeholder="Search a patient"
                     placeholderTextColor={Colors.charade}
                 />
             </View>

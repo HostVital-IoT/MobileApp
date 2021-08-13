@@ -1,10 +1,14 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableOpacity,ImageBackground } from 'react-native'
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import UserSession from '../../libs/sessions';
 import Colors from '../../res/Colors';
-import { GrEdit } from 'react-icons/gr'
-import { color } from 'react-native-reanimated';
+
+
+
+const imageBackground = {
+    uri: 'https://images.pexels.com/photos/3307218/pexels-photo-3307218.jpeg?cs=srgb&dl=pexels-tristan-pokornyi-3307218.jpg&fm=jpg',
+};
 
 class Profile extends React.Component {
 
@@ -55,34 +59,36 @@ class Profile extends React.Component {
         const { user, picture } = this.state;
         return (
             <View style={styles.container}>
-                <Image
-                    style={styles.header}
-                    source={{ uri: `${user.profile.header_img}` }}
-                />
+                <ImageBackground source={imageBackground} style={styles.image}>
+            
+                    
+        
                 <Image
                     style={styles.profileImage}
                     source={{ uri: picture || `${user.profile.profile_picture}` }}
                 />
+                <Image
+					source= {require('../../assets/logo.png')}
+					style={styles.logo}
+					/>
                 <TouchableOpacity
                     style={styles.profileEdit}
                     onPress={this.handleChooseProfileImage}
                 >
                     <Image
                         style={styles.camera}
-                        source={require('../../assets/pen.png')}
+                        source={require('../../assets/edit_icon.png')}
                     />
                 </TouchableOpacity>
                 <View style={styles.userInfo}>
                     <Text style={styles.name}>{user.first_name} {user.last_name}</Text>
                     <Text style={styles.age}>{user.profile.age}</Text>
                 </View>
-                <Text style={styles.rank}>{user.profile.rank}</Text>
+                <Text style={styles.status}>{user.profile.status}</Text>
                 <View style={styles.data}>
-                    <Text style={styles.level}>{user.profile.level}</Text>
                     
-
-
                 </View>
+                </ImageBackground>
             </View>
         );
     }
@@ -95,7 +101,16 @@ const styles = StyleSheet.create({
     header: {
         width: '100%',
         height: '40%',
-        backgroundColor: Colors.zircon,
+        backgroundColor: Colors.blue,
+    },
+    logo:{
+        width: 100,
+        height:100,
+        marginRight:320,
+        marginVertical:10,
+        top:30,
+        position: 'absolute',
+   
     },
     profileImage: {
         width: 200,
@@ -105,16 +120,15 @@ const styles = StyleSheet.create({
         borderWidth: 5,
         borderColor: Colors.white,
         position: 'absolute',
-        top: 170,
-        left: '23%',
+        top: 170,   
+        left: '26%',
     },
     profileEdit: {
-        width: 40,
-        height: 40,
+        width: 45,
+        height: 45,
         padding: 5,
         borderRadius: 20,
-        borderWidth: 4,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.greenp,
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute',
@@ -125,23 +139,24 @@ const styles = StyleSheet.create({
         flex: 2,
         width: '100%',
         height: '100%',
- 
+
     },
     userInfo: {
         flexDirection: 'row',
-        marginTop: 100,
+        marginTop: 150,
         justifyContent: 'center',
     },
     name: {
         fontSize: 28,
         fontWeight: 'bold',
-        color: Colors.zircon,
+        color: Colors.white,
     },
-    rank: {
+    status: {
         marginTop: 10,
         fontSize: 18,
         textAlign: 'center',
-        color: Colors.zircon,
+        color: Colors.white,
+        fontWeight:'bold',
     },
     data: {
         padding: 20,
@@ -173,7 +188,12 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.blackPearl,
         color: Colors.white,
         borderRadius: 30,
-    }
+    },
+    image: {
+        flex: 1,
+        resizeMode: 'cover',
+        justifyContent: 'center',
+    },
 });
 
 export default Profile;

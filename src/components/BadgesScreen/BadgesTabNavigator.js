@@ -3,7 +3,6 @@ import { Image } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import BadgesScreen from './BadgesScreen'
 import UserStack from '../UsersScreen/UserStack'
-import Favorites from '../Favorites/Favorites'
 import Colors from '../../res/Colors'
 
 const Tab = createBottomTabNavigator();
@@ -41,17 +40,7 @@ const BadgesTabNavigator = () => {
                     ),
                 }}
             />
-            <Tab.Screen
-                name="Favorites"
-                component={Favorites}
-                options={{
-                    tabBarIcon: ({ size, color }) => (
-                        <Image style={{ tintColor: color, width: size, height: size }}
-                            source={require('../../assets/notFavorite.png')}
-                        />
-                    ),
-                }}
-            />
+          
         </Tab.Navigator>
     );
 };

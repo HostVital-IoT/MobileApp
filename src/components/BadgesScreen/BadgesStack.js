@@ -19,7 +19,7 @@ const BadgesStack = () => {
                     backgroundColor: Colors.blackPearl,
                     shadowColor: Colors.blackPearl,
                 },
-                headerTintColor: Colors.white,
+                headerTintColor: Colors.blue,
              }}>
             <Stack.Screen name="Badges" component={BadgesScreen} />
             <Stack.Screen name="BadgesDetail" component={BadgesDetail} />

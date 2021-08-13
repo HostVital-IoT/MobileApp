@@ -9,7 +9,7 @@ const Loader = () => {
             <StatusBar backgroundColor="transparent" translucent={true} />
             <ActivityIndicator
                 style={styles.loader}
-                color={Colors.green}
+                color={Colors.greenp}
                 size="large"
             />
         </View>
